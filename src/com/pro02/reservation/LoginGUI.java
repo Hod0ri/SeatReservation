@@ -2,6 +2,9 @@ package com.pro02.reservation;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -71,5 +74,20 @@ public class LoginGUI extends JFrame {
 
         Register.setBounds(223, 165, 91, 23);
         panel.add(Register);
+
+        LoginSubmit.addActionListener(new EventHandler());
+    }
+
+    class EventHandler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == LoginSubmit) {
+                Login login = new Login();
+                String id = idBox.getText();
+                String passwd = passwdBox.getText();
+                login.setValue(id, passwd);
+            }
+        }
     }
 }
