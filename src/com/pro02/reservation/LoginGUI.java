@@ -6,18 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 
 public class LoginGUI extends JFrame {
 
     private JPanel contentPane;
     private JTextField idBox;
-    private JTextField passwdBox;
+    private JPasswordField passwdBox;
     JButton LoginSubmit = new JButton("로그인");
     JButton Register = new JButton("회원가입");
 
@@ -52,7 +48,7 @@ public class LoginGUI extends JFrame {
         panel.add(idBox);
         idBox.setColumns(10);
 
-        passwdBox = new JTextField();
+        passwdBox = new JPasswordField();
         passwdBox.setColumns(10);
         passwdBox.setBounds(115, 101, 175, 21);
         panel.add(passwdBox);
