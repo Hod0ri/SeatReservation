@@ -10,11 +10,9 @@ public class LinkDB {
             Class.forName("org.sqlite.JDBC");
         }
         catch(ClassNotFoundException e)  {
-            System.out.println("org.sqlite.JDBC를 찾지못했습니다.");
+            System.out.println("org.sqlite.JDBC Not Found");
         }
-
-        String dataFile = "C:\\Users\\MintMoca\\Desktop\\SeatReservation\\data.db";
-        connection = DriverManager.getConnection("jdbc:sqlite:" + dataFile);
+        connection = DriverManager.getConnection("jdbc:sqlite:data.db");
     }
 
     public ResultSet RunSQL(String sql) throws SQLException, ClassNotFoundException {
