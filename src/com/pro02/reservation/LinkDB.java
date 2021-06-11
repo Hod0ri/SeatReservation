@@ -6,7 +6,12 @@ public class LinkDB {
     Connection connection = null;
 
     private void LinkJDBC() throws ClassNotFoundException, SQLException {
-        Class.forName("org.sqlite.JDBC");
+        try {
+            Class.forName("org.sqlite.JDBC");
+        }
+        catch(ClassNotFoundException e)  {
+            System.out.println("org.sqlite.JDBC를 찾지못했습니다.");
+        }
 
         String dataFile = "C:\\Users\\MintMoca\\Desktop\\SeatReservation\\data.db";
         connection = DriverManager.getConnection("jdbc:sqlite:" + dataFile);

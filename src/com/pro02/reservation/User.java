@@ -1,5 +1,6 @@
 package com.pro02.reservation;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class User {
@@ -13,14 +14,17 @@ public class User {
     // Data Link
     LinkDB database = new LinkDB();
 
-    // TODO: Fix Method (Infinite Loop and Can't call variable)
+    // Set User Field
+    // TODO : Exception Not include parameter
     public void SetUser(String name) throws SQLException, ClassNotFoundException {
-        while (database.RunSQL("SELECT userNO, userName, userID, userPassWD FROM User WHERE userName = \"" + name + "\"").next()) {
-            int userNo = this.userNo;
-            String userName = this.userName;
-            String userID = this.userID;
-            String userPassWD = this.userPasswd;
+        ResultSet resultSet = database.RunSQL("SELECT userNO, userName, userID, userPassWD FROM User WHERE userName = \"" + name + "\"");
+        while (resultSet.next()) {
+            this.userNo = resultSet.getInt("userNo");
+            this.userID = resultSet.getString("userID");
+            this.userPasswd = resultSet.getString("userPassWD");
+            this.userName = resultSet.getString("userName");
         }
+        resultSet.close();
     }
     // Getter
     public int getUserNo() { return userNo; }
@@ -28,12 +32,4 @@ public class User {
     public String getUserID() { return userID; }
     public String getUserPasswd() { return userPasswd; }
 
-    // Test Main Method
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        User user = new User();
-
-        user.SetUser("admin");
-
-        System.out.println(user.getUserPasswd());
-    }
 }
