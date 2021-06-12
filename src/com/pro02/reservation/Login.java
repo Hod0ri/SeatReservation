@@ -10,9 +10,17 @@ public class Login {
     private String UserID;
     private String UserPasswd;
 
-    public void setValue(String inputID, String inputPW) {
+    public boolean LoginSys(String inputID, String inputPW) throws SQLException, ClassNotFoundException {
+        // Initialize
         this.inputID = inputID;
         this.inputPW = inputPW;
+
+        CallUser(inputID);
+        if(isValidAccount()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Call Account
@@ -26,26 +34,17 @@ public class Login {
         resultSet.close();
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Login lo = new Login();
-        lo.CallUser("admin");
-        System.out.println(lo.UserID);
-        System.out.println(lo.UserPasswd);
-    }
 
-    // Check Invaild
-    public boolean isValidAccount() {
+    // Check Valid
+    private boolean isValidAccount() {
         boolean isValid = false;
-
-        // TODO: SET LOGIN SYSTEM
-        if(inputPW.equals(UserPasswd))
-            isValid = true;
-
+            if (inputPW.equals(UserPasswd))
+                isValid = true;
         return isValid;
     }
 
     //Check PWLetter (' 39, " 34, - 45, = 61)
-    public boolean blockInjection(String InputPW){
+    private boolean blockInjection(String InputPW){
         boolean isValid = true;
         char[] tempChar = new char[InputPW.length()];
 

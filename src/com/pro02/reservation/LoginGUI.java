@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -81,8 +82,19 @@ public class LoginGUI extends JFrame {
             if(e.getSource() == LoginSubmit) {
                 Login login = new Login();
                 String id = idBox.getText();
-                String passwd = passwdBox.getText();
-                login.setValue(id, passwd);
+                String passwd = String.valueOf(passwdBox.getPassword());
+                try {
+                    if(login.LoginSys(id,passwd)) {
+                        System.out.println("pass");
+                    } else  {
+                        System.out.println("Not Pass");
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+
             }
         }
     }
