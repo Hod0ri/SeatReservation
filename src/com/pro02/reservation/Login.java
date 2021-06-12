@@ -35,10 +35,30 @@ public class Login {
 
     // Check Invaild
     public boolean isValidAccount() {
-        boolean isVaild = false;
+        boolean isValid = false;
 
         // TODO: SET LOGIN SYSTEM
+        if(inputPW.equals(UserPasswd))
+            isValid = true;
 
-        return isVaild;
+        return isValid;
+    }
+
+    //Check PWLetter (' 39, " 34, - 45, = 61)
+    public boolean blockInjection(String InputPW){
+        boolean isValid = true;
+        char[] tempChar = new char[InputPW.length()];
+
+        for(int i = 0; i < tempChar.length; i++){
+            tempChar[i] = InputPW.charAt(i);
+            switch((int)tempChar[i]){
+                case 34 :
+                case 39 :
+                case 45 :
+                case 61 : isValid = false; break;
+            }
+        }
+
+        return isValid;
     }
 }
