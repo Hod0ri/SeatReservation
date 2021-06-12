@@ -1,25 +1,25 @@
 package com.pro02.reservation;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
+import java.sql.SQLException;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 
 public class LoginGUI extends JFrame {
 
     private JPanel contentPane;
     private JTextField idBox;
-    private JTextField passwdBox;
+    private JPasswordField passwdBox;
+    JPanel panel = new JPanel();
     JButton LoginSubmit = new JButton("로그인");
     JButton Register = new JButton("회원가입");
+    JLabel wrongpasswd = new JLabel("");
+
+    private int countWrong = 0;
 
 
     public static void main(String[] args) {
@@ -36,6 +36,8 @@ public class LoginGUI extends JFrame {
     }
 
     public LoginGUI() {
+        setTitle("기가박스 회원 로그인");
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 350, 500);
         contentPane = new JPanel();
@@ -43,16 +45,19 @@ public class LoginGUI extends JFrame {
         contentPane.setLayout(new BorderLayout(0, 0));
         setContentPane(contentPane);
 
-        JPanel panel = new JPanel();
         contentPane.add(panel, BorderLayout.CENTER);
         panel.setLayout(null);
+        panel.setBackground(Color.PINK);
+
+        wrongpasswd.setBounds(99, 211, 191, 15);
+        panel.add(wrongpasswd);
 
         idBox = new JTextField();
         idBox.setBounds(115, 70, 175, 21);
         panel.add(idBox);
         idBox.setColumns(10);
 
-        passwdBox = new JTextField();
+        passwdBox = new JPasswordField();
         passwdBox.setColumns(10);
         passwdBox.setBounds(115, 101, 175, 21);
         panel.add(passwdBox);
@@ -85,8 +90,27 @@ public class LoginGUI extends JFrame {
             if(e.getSource() == LoginSubmit) {
                 Login login = new Login();
                 String id = idBox.getText();
-                String passwd = passwdBox.getText();
-                login.setValue(id, passwd);
+                String passwd = String.valueOf(passwdBox.getPassword());
+                try {
+                    if(login.LoginSys(id,passwd)) {
+                        System.out.println("pass");
+                        countWrong = 0;
+                        // TODO : Change Window
+                    } else  {
+                        JOptionPane.showMessageDialog(null, "올바르지 않은 정보입니다.", "경고", 0);
+                        if(countWrong > 2) {
+                            wrongpasswd.setText("비밀번호를 잊으셨나요?");
+                        }
+                        idBox.setText("");
+                        passwdBox.setText("");
+                        countWrong++;
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+
             }
         }
     }

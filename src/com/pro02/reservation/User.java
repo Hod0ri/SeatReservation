@@ -31,5 +31,4 @@ public class User {
     public String getUserName() { return userName; }
     public String getUserID() { return userID; }
     public String getUserPasswd() { return userPasswd; }
-
 }
