@@ -1,7 +1,6 @@
 package com.pro02.reservation;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
@@ -33,6 +32,8 @@ public class LoginGUI extends JFrame {
     }
 
     public LoginGUI() {
+        setTitle("기가박스 회원 로그인");
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 350, 500);
         contentPane = new JPanel();
@@ -43,6 +44,7 @@ public class LoginGUI extends JFrame {
         JPanel panel = new JPanel();
         contentPane.add(panel, BorderLayout.CENTER);
         panel.setLayout(null);
+        panel.setBackground(Color.PINK);
 
         idBox = new JTextField();
         idBox.setBounds(115, 70, 175, 21);
@@ -86,8 +88,11 @@ public class LoginGUI extends JFrame {
                 try {
                     if(login.LoginSys(id,passwd)) {
                         System.out.println("pass");
+                        // TODO : Change Window
                     } else  {
-                        System.out.println("Not Pass");
+                        JOptionPane.showMessageDialog(null, "올바르지 않은 정보입니다.", "경고", 0);
+                        idBox.setText("");
+                        passwdBox.setText("");
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
