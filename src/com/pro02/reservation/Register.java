@@ -18,9 +18,6 @@ public class Register extends JFrame {
     private JTextField textField_2;
     private JTextField textField_3;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -33,10 +30,7 @@ public class Register extends JFrame {
             }
         });
     }
-
-    /**
-     * Create the frame.
-     */
+    
     public Register() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 406, 277);
