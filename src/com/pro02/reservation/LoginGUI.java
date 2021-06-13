@@ -3,7 +3,6 @@ package com.pro02.reservation;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.EventHandler;
 import java.sql.SQLException;
 
 import javax.swing.*;
@@ -113,7 +112,7 @@ public class LoginGUI extends JFrame {
                 }
             } else if(e.getSource() == Register) {
                 setVisible(false);
-                Register register = new Register();
+                RegisterGUI register = new RegisterGUI();
                 register.ShowRegister();
             }
         }

@@ -4,22 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.EventHandler;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 
-public class Register extends JFrame {
+public class RegisterGUI extends JFrame {
 
     private JPanel contentPane;
     private JTextField nameBox;
     private JTextField idBox;
-    private JTextField passwdBox;
-    private JTextField reCheckBox;
+    private JPasswordField passwdBox;
+    private JPasswordField reCheckBox;
 
     JButton submitBtn = new JButton("회원가입");
 
@@ -27,7 +22,7 @@ public class Register extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Register frame = new Register();
+                    RegisterGUI frame = new RegisterGUI();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -36,7 +31,7 @@ public class Register extends JFrame {
         });
     }
 
-    public Register() {
+    public RegisterGUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 406, 277);
         contentPane = new JPanel();
@@ -58,7 +53,7 @@ public class Register extends JFrame {
         idBox.setBounds(125, 71, 150, 21);
         panel.add(idBox);
 
-        passwdBox = new JTextField();
+        passwdBox = new JPasswordField();
         passwdBox.setColumns(10);
         passwdBox.setBounds(125, 102, 150, 21);
         panel.add(passwdBox);
@@ -75,7 +70,7 @@ public class Register extends JFrame {
         lblNewLabel_1_1.setBounds(63, 105, 50, 15);
         panel.add(lblNewLabel_1_1);
 
-        reCheckBox = new JTextField();
+        reCheckBox = new JPasswordField();
         reCheckBox.setColumns(10);
         reCheckBox.setBounds(125, 133, 150, 21);
         panel.add(reCheckBox);
@@ -98,8 +93,18 @@ public class Register extends JFrame {
                 // TODO : Event Handling
                 String name = nameBox.getText();
                 String userID = idBox.getText();
-                String passwd = passwdBox.getText();
+                String passwd = String.valueOf(passwdBox.getPassword());
             }
+        }
+    }
+
+    private boolean checkPasswd(String input) {
+        String compare = String.valueOf(reCheckBox.getPassword());
+        if(input.equals(compare)) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다!", "경고", 0);
+            return false;
         }
     }
 }
