@@ -2,6 +2,9 @@ package com.pro02.reservation;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +20,8 @@ public class Register extends JFrame {
     private JTextField idBox;
     private JTextField passwdBox;
     private JTextField reCheckBox;
+
+    JButton submitBtn = new JButton("회원가입");
 
     public void ShowRegister() {
         EventQueue.invokeLater(new Runnable() {
@@ -79,8 +84,19 @@ public class Register extends JFrame {
         lblNewLabel_1_1_1.setBounds(63, 136, 50, 15);
         panel.add(lblNewLabel_1_1_1);
 
-        JButton btnNewButton = new JButton("회원가입");
-        btnNewButton.setBounds(184, 164, 91, 23);
-        panel.add(btnNewButton);
+        submitBtn.setBounds(184, 164, 91, 23);
+        panel.add(submitBtn);
+
+        submitBtn.addActionListener(new EventHandler());
+    }
+
+    class EventHandler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == submitBtn) {
+                // TODO : Event Handling
+            }
+        }
     }
 }
