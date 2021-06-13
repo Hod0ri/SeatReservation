@@ -96,6 +96,9 @@ public class Register extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == submitBtn) {
                 // TODO : Event Handling
+                String name = nameBox.getText();
+                String userID = idBox.getText();
+                String passwd = passwdBox.getText();
             }
         }
     }
