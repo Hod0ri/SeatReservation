@@ -81,6 +81,7 @@ public class LoginGUI extends JFrame {
         panel.add(Register);
 
         LoginSubmit.addActionListener(new EventHandler());
+        Register.addActionListener(new EventHandler());
     }
 
     class EventHandler implements ActionListener {
@@ -110,7 +111,10 @@ public class LoginGUI extends JFrame {
                 } catch (ClassNotFoundException classNotFoundException) {
                     classNotFoundException.printStackTrace();
                 }
-
+            } else if(e.getSource() == Register) {
+                setVisible(false);
+                Register register = new Register();
+                register.ShowRegister();
             }
         }
     }

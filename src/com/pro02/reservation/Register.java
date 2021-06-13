@@ -13,12 +13,12 @@ import javax.swing.JLabel;
 public class Register extends JFrame {
 
     private JPanel contentPane;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
-    private JTextField textField_3;
+    private JTextField nameBox;
+    private JTextField idBox;
+    private JTextField passwdBox;
+    private JTextField reCheckBox;
 
-    public static void main(String[] args) {
+    public void ShowRegister() {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -30,7 +30,7 @@ public class Register extends JFrame {
             }
         });
     }
-    
+
     public Register() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 406, 277);
@@ -43,20 +43,20 @@ public class Register extends JFrame {
         contentPane.add(panel, BorderLayout.CENTER);
         panel.setLayout(null);
 
-        textField = new JTextField();
-        textField.setBounds(125, 40, 150, 21);
-        panel.add(textField);
-        textField.setColumns(10);
+        nameBox = new JTextField();
+        nameBox.setBounds(125, 40, 150, 21);
+        panel.add(nameBox);
+        nameBox.setColumns(10);
 
-        textField_1 = new JTextField();
-        textField_1.setColumns(10);
-        textField_1.setBounds(125, 71, 150, 21);
-        panel.add(textField_1);
+        idBox = new JTextField();
+        idBox.setColumns(10);
+        idBox.setBounds(125, 71, 150, 21);
+        panel.add(idBox);
 
-        textField_2 = new JTextField();
-        textField_2.setColumns(10);
-        textField_2.setBounds(125, 102, 150, 21);
-        panel.add(textField_2);
+        passwdBox = new JTextField();
+        passwdBox.setColumns(10);
+        passwdBox.setBounds(125, 102, 150, 21);
+        panel.add(passwdBox);
 
         JLabel lblNewLabel = new JLabel("이름");
         lblNewLabel.setBounds(63, 43, 50, 15);
@@ -70,10 +70,10 @@ public class Register extends JFrame {
         lblNewLabel_1_1.setBounds(63, 105, 50, 15);
         panel.add(lblNewLabel_1_1);
 
-        textField_3 = new JTextField();
-        textField_3.setColumns(10);
-        textField_3.setBounds(125, 133, 150, 21);
-        panel.add(textField_3);
+        reCheckBox = new JTextField();
+        reCheckBox.setColumns(10);
+        reCheckBox.setBounds(125, 133, 150, 21);
+        panel.add(reCheckBox);
 
         JLabel lblNewLabel_1_1_1 = new JLabel("재입력");
         lblNewLabel_1_1_1.setBounds(63, 136, 50, 15);
