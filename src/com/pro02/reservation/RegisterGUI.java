@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 public class RegisterGUI extends JFrame {
 
+    Register register = new Register();
+
     private JPanel contentPane;
     private JTextField nameBox;
     private JTextField idBox;
@@ -91,9 +93,15 @@ public class RegisterGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == submitBtn) {
                 // TODO : Event Handling
-                String name = nameBox.getText();
-                String userID = idBox.getText();
-                String passwd = String.valueOf(passwdBox.getPassword());
+                if(checkPasswd(String.valueOf(passwdBox.getPassword()))) {
+                    String name = nameBox.getText();
+                    String userID = idBox.getText();
+                    String passwd = String.valueOf(passwdBox.getPassword());
+
+                    register.setInfo(name, userID, passwd);
+                    JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다!", "완료", NORMAL);
+                }
+
             }
         }
     }
