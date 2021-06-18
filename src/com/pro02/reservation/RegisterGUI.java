@@ -93,21 +93,25 @@ public class RegisterGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == submitBtn) {
                 // TODO : Event Handling
-                if(checkPasswd(String.valueOf(passwdBox.getPassword()))) {
-                    String name = nameBox.getText();
-                    String userID = idBox.getText();
-                    String passwd = String.valueOf(passwdBox.getPassword());
+                String name = nameBox.getText();
+                String userID = idBox.getText();
+                String passwd = String.valueOf(passwdBox.getPassword());
+                String compare = String.valueOf(reCheckBox.getPassword());
 
-                    register.setInfo(name, userID, passwd);
-                    JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다!", "완료", NORMAL);
+
+                if(name.isEmpty() || userID.isEmpty() || passwd.isEmpty() || compare.isEmpty()) {
+                    if (checkPasswd(passwd, compare)) {
+                        register.setInfo(name, userID, passwd);
+                        JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다!", "완료", NORMAL);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "입력되지 않은 칸이 존재합니다!", "경고", JOptionPane.WARNING_MESSAGE);
                 }
-
             }
         }
     }
 
-    private boolean checkPasswd(String input) {
-        String compare = String.valueOf(reCheckBox.getPassword());
+    private boolean checkPasswd(String input, String compare) {
         if(input.equals(compare)) {
             return true;
         } else {
