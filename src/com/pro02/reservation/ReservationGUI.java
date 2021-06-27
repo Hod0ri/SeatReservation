@@ -1,8 +1,5 @@
 package com.pro02.reservation;
 
-import com.pro02.login.LoginGUI;
-import com.pro02.login.RegisterGUI;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -64,16 +61,21 @@ public class ReservationGUI extends JFrame {
         btn_current.setBounds(12, 69, 91, 23);
         panel.add(btn_current);
 
+        char lineTemp = 'A';
         for(int row = 0; row < seatRow; row++) {
+            int index = 1;
             for(int line = 0; line < seatLine; line++) {
                 seatBtn[row][line] = new JButton("");
+                seatBtn[row][line].setName(lineTemp + String.valueOf(index));
                 seatBtn[row][line].setBounds(initialX, initialY, btnWidth, btnHeight);
                 panel.add(seatBtn[row][line]);
                 initialX += 37;
+                index ++;
             }
             // Reset X Position
             initialX = 196;
             initialY += 33;
+            lineTemp++;
         }
 
         JLabel lblNewLabel = new JLabel("A 열");

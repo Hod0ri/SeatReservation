@@ -3,8 +3,11 @@ package com.pro02.reservation;
 import com.pro02.data.LinkDB;
 import com.pro02.data.User;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.pro02.data.LinkDB;
 
 public class Reservation {
     private String seatNum;
@@ -32,5 +35,26 @@ public class Reservation {
         }
         resultSet.close();
     }
+    public boolean isEmpty(String name) throws SQLException, ClassNotFoundException {
+        LoadSeat(name);
+        if(isSeatEmpty == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    public void Checkin(String name) {
+
+        String sql = "Update Seat Set SeatEmpty = 1 where SeatNo = ?";
+
+        try ( Connection conn = data.connect();
+              PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setString(1, name);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

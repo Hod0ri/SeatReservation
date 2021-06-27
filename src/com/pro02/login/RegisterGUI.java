@@ -112,6 +112,8 @@ public class RegisterGUI extends JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "입력되지 않은 칸이 존재합니다!", "경고", JOptionPane.WARNING_MESSAGE);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "입력되지 않은 칸이 존재합니다!", "경고", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
