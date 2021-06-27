@@ -1,6 +1,7 @@
 package com.pro02.login;
 
 import com.pro02.data.LinkDB;
+import com.pro02.reservation.ReservationGUI;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,8 @@ public class Login {
 
         CallUser(inputID);
         if(isValidAccount()) {
+            ReservationGUI reservationGUI = new ReservationGUI();
+            reservationGUI.userName = this.UserID;
             return true;
         } else {
             return false;

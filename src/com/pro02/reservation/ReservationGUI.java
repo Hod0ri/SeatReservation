@@ -1,5 +1,8 @@
 package com.pro02.reservation;
 
+import com.pro02.data.User;
+import com.pro02.login.LoginGUI;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,10 +20,11 @@ public class ReservationGUI extends JFrame {
     int initialX = 196;
     int initialY = 62;
     Reservation reservation = new Reservation();
+    public String userName = null;
 
     ImageIcon img = new ImageIcon("img/icon.png");
     private JPanel contentPane;
-    JLabel userNameLabel = new JLabel("Empty");
+    JLabel userNameLabel = new JLabel(userName + "님 환영합니다!");
     JButton btn_Logout = new JButton("로그아웃");
     JButton btn_current = new JButton("예매 현황");
     public static JButton[][] seatBtn = new JButton[seatRow][seatLine];
@@ -111,7 +115,9 @@ public class ReservationGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == btn_Logout) {
-                System.out.println(e.getSource());
+                setVisible(false);
+                LoginGUI login = new LoginGUI();
+                login.ShowLogin();
             } else if(e.getSource() == btn_current) {
 
             }
