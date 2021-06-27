@@ -1,9 +1,8 @@
-package com.pro02.reservation;
+package com.pro02.login;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.EventHandler;
 import java.sql.SQLException;
 
 import javax.swing.*;
@@ -18,6 +17,7 @@ public class LoginGUI extends JFrame {
     JButton LoginSubmit = new JButton("로그인");
     JButton Register = new JButton("회원가입");
     JLabel wrongpasswd = new JLabel("");
+    ImageIcon img = new ImageIcon("img/icon.png");
 
     private int countWrong = 0;
 
@@ -36,6 +36,7 @@ public class LoginGUI extends JFrame {
     }
 
     public LoginGUI() {
+        setIconImage(img.getImage());
         setTitle("기가박스 회원 로그인");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,7 +114,7 @@ public class LoginGUI extends JFrame {
                 }
             } else if(e.getSource() == Register) {
                 setVisible(false);
-                Register register = new Register();
+                RegisterGUI register = new RegisterGUI();
                 register.ShowRegister();
             }
         }
