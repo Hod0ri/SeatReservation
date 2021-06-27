@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import com.pro02.login.LoginGUI;
+
 public class RegisterGUI extends JFrame {
 
     Register register = new Register();
@@ -103,11 +105,15 @@ public class RegisterGUI extends JFrame {
                 String compare = String.valueOf(reCheckBox.getPassword());
 
 
-                if (name.isEmpty() || userID.isEmpty() || passwd.isEmpty() || compare.isEmpty()) {
-                    if (name.isBlank() || userID.isBlank() || passwd.isBlank() || compare.isBlank()) {
+                if (!name.isEmpty() || !userID.isEmpty() || !passwd.isEmpty() || !compare.isEmpty()) {
+                    if (!name.isBlank() || !userID.isBlank() || !passwd.isBlank() || !compare.isBlank()) {
                         if (checkPasswd(passwd, compare)) {
                             register.setInfo(name, userID, passwd);
                             JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다!", "완료", NORMAL);
+
+                            setVisible(false);
+                            LoginGUI login = new LoginGUI();
+                            login.ShowLogin();
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "입력되지 않은 칸이 존재합니다!", "경고", JOptionPane.WARNING_MESSAGE);
@@ -115,8 +121,11 @@ public class RegisterGUI extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "입력되지 않은 칸이 존재합니다!", "경고", JOptionPane.WARNING_MESSAGE);
                 }
+
             }
         }
+
+
     }
 
     private boolean checkPasswd(String input, String compare) {

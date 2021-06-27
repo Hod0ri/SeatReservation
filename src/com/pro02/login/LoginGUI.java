@@ -85,6 +85,20 @@ public class LoginGUI extends JFrame {
         Register.addActionListener(new EventHandler());
     }
 
+    public void ShowLogin() {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    LoginGUI frame = new LoginGUI();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
     class EventHandler implements ActionListener {
 
         @Override
