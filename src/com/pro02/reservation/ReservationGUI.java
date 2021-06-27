@@ -1,9 +1,9 @@
 package com.pro02.reservation;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -16,6 +16,7 @@ public class ReservationGUI extends JFrame {
     int btnHeight = 23;
     int initialX = 196;
     int initialY = 62;
+    Reservation reservation = new Reservation();
 
     ImageIcon img = new ImageIcon("img/icon.png");
     private JPanel contentPane;
@@ -37,7 +38,7 @@ public class ReservationGUI extends JFrame {
         });
     }
 
-    public ReservationGUI() {
+    public ReservationGUI() throws SQLException, ClassNotFoundException {
         setIconImage(img.getImage());
         setTitle("기가박스 상영관 예매");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,6 +69,11 @@ public class ReservationGUI extends JFrame {
                 seatBtn[row][line] = new JButton("");
                 seatBtn[row][line].setName(lineTemp + String.valueOf(index));
                 seatBtn[row][line].setBounds(initialX, initialY, btnWidth, btnHeight);
+
+                if(!reservation.isEmpty(seatBtn[row][line].getName())) {
+                    seatBtn[row][line].setBackground(Color.RED);
+                }
+
                 panel.add(seatBtn[row][line]);
                 initialX += 37;
                 index ++;
