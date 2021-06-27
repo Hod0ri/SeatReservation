@@ -13,8 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 public class ReservationGUI extends JFrame {
 
-    int seatRow = 3;
-    int seatLine = 10;
+    static int seatRow = 3;
+    static int seatLine = 10;
     int btnWidth = 25;
     int btnHeight = 23;
     int initialX = 196;
@@ -25,7 +25,7 @@ public class ReservationGUI extends JFrame {
     JLabel userNameLabel = new JLabel("Empty");
     JButton btn_Logout = new JButton("로그아웃");
     JButton btn_current = new JButton("예매 현황");
-    JButton[][] seatBtn = new JButton[seatRow][seatLine];
+    public static JButton[][] seatBtn = new JButton[seatRow][seatLine];
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -94,21 +94,18 @@ public class ReservationGUI extends JFrame {
 
         for(int row = 0; row < seatRow; row++) {
             for(int line = 0; line < seatLine; line++) {
-                seatBtn[row][line].addActionListener(new ReservationGUI.EventHandler());
+                seatBtn[row][line].addActionListener(new BackProgramSeat.EventHandler());
             }
         }
-
     }
 
     class EventHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == btn_Logout) {
-
+                System.out.println(e.getSource());
             } else if(e.getSource() == btn_current) {
 
-            } else if(e.getSource() == seatBtn[0][0]) {
-                System.out.println("Test");
             }
         }
     }
