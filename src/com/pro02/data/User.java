@@ -1,4 +1,4 @@
-package com.pro02.reservation;
+package com.pro02.data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,11 +11,19 @@ public class User {
     private String userID;
     private String userPasswd;
 
+    // Constructor
+    public User() {
+        // Basic Constructor
+    }
+
+    public User(String userName) throws SQLException, ClassNotFoundException {
+        SetUser(userName);
+    }
+
     // Data Link
     LinkDB database = new LinkDB();
 
     // Set User Field
-    // TODO : Exception Not include parameter
     public void SetUser(String name) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = database.RunSQL("SELECT userNO, userName, userID, userPassWD FROM User WHERE userName = \"" + name + "\"");
         while (resultSet.next()) {

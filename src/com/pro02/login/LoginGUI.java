@@ -1,9 +1,11 @@
-package com.pro02.reservation;
+package com.pro02.login;
+
+import com.pro02.reservation.Reservation;
+import com.pro02.reservation.ReservationGUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.EventHandler;
 import java.sql.SQLException;
 
 import javax.swing.*;
@@ -18,6 +20,7 @@ public class LoginGUI extends JFrame {
     JButton LoginSubmit = new JButton("로그인");
     JButton Register = new JButton("회원가입");
     JLabel wrongpasswd = new JLabel("");
+    ImageIcon img = new ImageIcon("img/icon.png");
 
     private int countWrong = 0;
 
@@ -36,6 +39,7 @@ public class LoginGUI extends JFrame {
     }
 
     public LoginGUI() {
+        setIconImage(img.getImage());
         setTitle("기가박스 회원 로그인");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +88,20 @@ public class LoginGUI extends JFrame {
         Register.addActionListener(new EventHandler());
     }
 
+    public void ShowLogin() {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    LoginGUI frame = new LoginGUI();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
     class EventHandler implements ActionListener {
 
         @Override
@@ -96,7 +114,9 @@ public class LoginGUI extends JFrame {
                     if(login.LoginSys(id,passwd)) {
                         System.out.println("pass");
                         countWrong = 0;
-                        // TODO : Change Window
+                        setVisible(false);
+                        ReservationGUI reservationGUI = new ReservationGUI();
+                        reservationGUI.ShowReservation();
                     } else  {
                         JOptionPane.showMessageDialog(null, "올바르지 않은 정보입니다.", "경고", 0);
                         if(countWrong > 2) {
@@ -113,7 +133,7 @@ public class LoginGUI extends JFrame {
                 }
             } else if(e.getSource() == Register) {
                 setVisible(false);
-                Register register = new Register();
+                RegisterGUI register = new RegisterGUI();
                 register.ShowRegister();
             }
         }

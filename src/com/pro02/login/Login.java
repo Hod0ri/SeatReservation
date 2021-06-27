@@ -1,4 +1,7 @@
-package com.pro02.reservation;
+package com.pro02.login;
+
+import com.pro02.data.LinkDB;
+import com.pro02.reservation.ReservationGUI;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +20,8 @@ public class Login {
 
         CallUser(inputID);
         if(isValidAccount()) {
+            ReservationGUI reservationGUI = new ReservationGUI();
+            reservationGUI.userName = this.UserID;
             return true;
         } else {
             return false;
@@ -40,24 +45,6 @@ public class Login {
         boolean isValid = false;
             if (inputPW.equals(UserPasswd))
                 isValid = true;
-        return isValid;
-    }
-
-    //Check PWLetter (' 39, " 34, - 45, = 61)
-    private boolean blockInjection(String InputPW){
-        boolean isValid = true;
-        char[] tempChar = new char[InputPW.length()];
-
-        for(int i = 0; i < tempChar.length; i++){
-            tempChar[i] = InputPW.charAt(i);
-            switch((int)tempChar[i]){
-                case 34 :
-                case 39 :
-                case 45 :
-                case 61 : isValid = false; break;
-            }
-        }
-
         return isValid;
     }
 }

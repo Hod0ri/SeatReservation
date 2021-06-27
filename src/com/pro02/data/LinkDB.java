@@ -1,4 +1,4 @@
-package com.pro02.reservation;
+package com.pro02.data;
 
 import java.sql.*;
 
@@ -13,6 +13,18 @@ public class LinkDB {
             System.out.println("org.sqlite.JDBC Not Found");
         }
         connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+    }
+    // For Insert
+    public Connection connect() {
+        // SQLite connection string
+        String url = "jdbc:sqlite:data.db";
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return conn;
     }
 
     public ResultSet RunSQL(String sql) throws SQLException, ClassNotFoundException {

@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\MintMoca\Desktop\SeatReservation\data.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="data [2]" uuid="2203f126-adec-48d9-8339-e58b6e6282cd">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\MintMoca\Desktop\Capstone\SeatReservation\data.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
