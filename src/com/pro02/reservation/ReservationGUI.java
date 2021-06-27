@@ -1,6 +1,7 @@
 package com.pro02.reservation;
 
 import com.pro02.login.LoginGUI;
+import com.pro02.login.RegisterGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -87,12 +88,28 @@ public class ReservationGUI extends JFrame {
         lblC.setBounds(561, 136, 50, 15);
         panel.add(lblC);
 
+        // Event Handling
+        btn_Logout.addActionListener(new ReservationGUI.EventHandler());
+        btn_current.addActionListener(new ReservationGUI.EventHandler());
+
+        for(int row = 0; row < seatRow; row++) {
+            for(int line = 0; line < seatLine; line++) {
+                seatBtn[row][line].addActionListener(new ReservationGUI.EventHandler());
+            }
+        }
+
     }
 
     class EventHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == btn_Logout) {
 
+            } else if(e.getSource() == btn_current) {
+
+            } else if(e.getSource() == seatBtn[0][0]) {
+                System.out.println("Test");
+            }
         }
     }
 }
