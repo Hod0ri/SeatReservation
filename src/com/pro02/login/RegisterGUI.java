@@ -109,7 +109,7 @@ public class RegisterGUI extends JFrame {
                     if (!name.isBlank() || !userID.isBlank() || !passwd.isBlank() || !compare.isBlank()) {
                         if (checkPasswd(passwd, compare)) {
                             register.setInfo(name, userID, passwd);
-                            JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다!", "완료", NORMAL);
+                            JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다!");
 
                             setVisible(false);
                             LoginGUI login = new LoginGUI();

@@ -25,7 +25,7 @@ public class ReservationGUI extends JFrame {
     JButton btn_current = new JButton("예매 현황");
     public static JButton[][] seatBtn = new JButton[seatRow][seatLine];
 
-    public static void main(String[] args) {
+    public void ShowReservation() {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

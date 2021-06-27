@@ -1,5 +1,8 @@
 package com.pro02.login;
 
+import com.pro02.reservation.Reservation;
+import com.pro02.reservation.ReservationGUI;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -111,7 +114,9 @@ public class LoginGUI extends JFrame {
                     if(login.LoginSys(id,passwd)) {
                         System.out.println("pass");
                         countWrong = 0;
-                        // TODO : Change Window
+                        setVisible(false);
+                        ReservationGUI reservationGUI = new ReservationGUI();
+                        reservationGUI.ShowReservation();
                     } else  {
                         JOptionPane.showMessageDialog(null, "올바르지 않은 정보입니다.", "경고", 0);
                         if(countWrong > 2) {
