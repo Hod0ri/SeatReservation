@@ -20,6 +20,7 @@ public class User {
         SetUser(userName);
     }
 
+
     // Data Link
     LinkDB database = new LinkDB();
 

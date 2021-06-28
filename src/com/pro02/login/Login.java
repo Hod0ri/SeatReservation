@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 public class Login {
     private String inputID;
+    private String userName;
     private String inputPW;
     // Correct Value
     private String UserID;
@@ -20,8 +21,6 @@ public class Login {
 
         CallUser(inputID);
         if(isValidAccount()) {
-            ReservationGUI reservationGUI = new ReservationGUI();
-            reservationGUI.userName = this.UserID;
             return true;
         } else {
             return false;
@@ -35,6 +34,16 @@ public class Login {
         while (resultSet.next()) {
             this.UserID = resultSet.getString("userID");
             this.UserPasswd = resultSet.getString("userPassWD");
+        }
+        resultSet.close();
+        SetUserName(inputID);
+    }
+
+    public void SetUserName(String inputID) throws SQLException, ClassNotFoundException {
+        LinkDB database = new LinkDB();
+        ResultSet resultSet = database.RunSQL("SELECT userName FROM User WHERE userID = \"" + inputID + "\"");
+        while (resultSet.next()) {
+            this.userName = resultSet.getString("userName");
         }
         resultSet.close();
     }

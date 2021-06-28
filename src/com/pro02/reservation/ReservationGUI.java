@@ -20,13 +20,12 @@ public class ReservationGUI extends JFrame {
     int initialX = 196;
     int initialY = 62;
     Reservation reservation = new Reservation();
-    public String userName = null;
+    User user = new User();
 
     ImageIcon img = new ImageIcon("img/icon.png");
     private JPanel contentPane;
-    JLabel userNameLabel = new JLabel(userName + "님 환영합니다!");
+    JLabel userNameLabel = new JLabel(user.getUserName() + "님 환영합니다!");
     JButton btn_Logout = new JButton("로그아웃");
-    JButton btn_current = new JButton("예매 현황");
     public static JButton[][] seatBtn = new JButton[seatRow][seatLine];
 
     public void ShowReservation() {
@@ -63,8 +62,8 @@ public class ReservationGUI extends JFrame {
         btn_Logout.setBounds(12, 102, 91, 23);
         panel.add(btn_Logout);
 
-        btn_current.setBounds(12, 69, 91, 23);
-        panel.add(btn_current);
+//        btn_current.setBounds(12, 69, 91, 23);
+//        panel.add(btn_current);
 
         char lineTemp = 'A';
         for(int row = 0; row < seatRow; row++) {
@@ -102,7 +101,7 @@ public class ReservationGUI extends JFrame {
 
         // Event Handling
         btn_Logout.addActionListener(new ReservationGUI.EventHandler());
-        btn_current.addActionListener(new ReservationGUI.EventHandler());
+//        btn_current.addActionListener(new ReservationGUI.EventHandler());
 
         for(int row = 0; row < seatRow; row++) {
             for(int line = 0; line < seatLine; line++) {
@@ -118,9 +117,10 @@ public class ReservationGUI extends JFrame {
                 setVisible(false);
                 LoginGUI login = new LoginGUI();
                 login.ShowLogin();
-            } else if(e.getSource() == btn_current) {
-
             }
+//            } else if(e.getSource() == btn_current) {
+//
+//            }
         }
     }
 }
