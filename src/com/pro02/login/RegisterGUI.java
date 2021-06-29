@@ -95,6 +95,27 @@ public class RegisterGUI extends JFrame {
 
     class EventHandler implements ActionListener {
 
+        public boolean blankCheck(String name, String userID, String passwd, String compare){
+            String blank = "";
+
+            if(name.equals(blank) || userID.equals(blank) || passwd.equals(blank) || compare.equals(blank))
+                return false;
+            else
+                return true;
+        }
+        public boolean checkHasBlank(String check){
+            boolean result = false;
+            String blank = " ";
+
+            String[] stringTemp = check.split("");
+            for (String s : stringTemp) {
+                if (s.equals(blank))
+                    result = true;
+            }
+
+            return result;
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == submitBtn) {
@@ -104,24 +125,27 @@ public class RegisterGUI extends JFrame {
                 String passwd = String.valueOf(passwdBox.getPassword());
                 String compare = String.valueOf(reCheckBox.getPassword());
 
+                if (blankCheck(name, userID, passwd, compare)) {
+                    if(checkHasBlank(userID))
+                        JOptionPane.showMessageDialog(null, "아이디는 공백을 포함할 수 없습니다!", "경고", JOptionPane.WARNING_MESSAGE);
 
-                if (!name.isEmpty() || !userID.isEmpty() || !passwd.isEmpty() || !compare.isEmpty()) {
-                    if (!name.isBlank() || !userID.isBlank() || !passwd.isBlank() || !compare.isBlank()) {
-                        if (checkPasswd(passwd, compare)) {
-                            register.setInfo(name, userID, passwd);
-                            JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다!");
+                    else if(checkHasBlank(passwd))
+                        JOptionPane.showMessageDialog(null, "비밀번호는 공백을 포함할 수 없습니다!", "경고", JOptionPane.WARNING_MESSAGE);
 
-                            setVisible(false);
-                            LoginGUI login = new LoginGUI();
-                            login.ShowLogin();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "입력되지 않은 칸이 존재합니다!", "경고", JOptionPane.WARNING_MESSAGE);
+                    else if(!compare.equals(passwd))
+                        JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다!", "경고", JOptionPane.WARNING_MESSAGE);
+                    else {
+                        register.setInfo(name, userID, passwd);
+                        JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다!");
+
+                        setVisible(false);
+                        LoginGUI login = new LoginGUI();
+                        login.ShowLogin();
                     }
-                } else {
+                }
+                else {
                     JOptionPane.showMessageDialog(null, "입력되지 않은 칸이 존재합니다!", "경고", JOptionPane.WARNING_MESSAGE);
                 }
-
             }
         }
 
